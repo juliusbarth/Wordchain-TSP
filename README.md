@@ -4,7 +4,8 @@ Given a list of words, find the shortest wordchain/merged word containing all wo
 
 Example: 
 
-orca -> arc -> car = orcarcar
-orca -> car -> arc = orcarc 
+1) orca -> arc -> car = orcarcar
+
+2) orca -> car -> arc = orcarc 
 
 Problem is framed as a Traveling Salesman Problem. 
