@@ -32,8 +32,8 @@ def mergeWords(w1, w2):
 ######################### Data #########################
 print("\nDefining Data:")    
 #words = ['orca', 'arc', 'car']
-#words = ['area', 'code', 'dear', 'deco', 'odec', 'rear']
-words = ['SGALWDV', 'GALWDVP', 'ALWDVPS', 'LWDVPSP', 'WDVPSPV']
+words = ['area', 'code', 'dear', 'deco', 'odec', 'rear']
+#words = ['SGALWDV', 'GALWDVP', 'ALWDVPS', 'LWDVPSP', 'WDVPSPV']
 nbWords = len(words)
 nodes =  ['S']
 nodes.extend(words)
