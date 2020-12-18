@@ -1,0 +1,9 @@
+Sources: 
+
+1) https://www.reddit.com/r/OperationsResearch/comments/kd3qrb/travelling_salesman_problem_model_formulations/
+
+I am working on a homework question and I do not have an idea on how to start it. The question goes like this:
+You are tasked to solve the problem of constructing a word with a minimum number of letters by using a given set of words. For example, if you are given the words "car", "arc", and "orca", the shortest word that you can construct by using all of the given words is "orcarc". (Constructed word does not have to be meaningful.) Formulate this problem as a Traveling Salesman Problem for the following words: area, code, dear, deco, rear, odec.
+Its the 'Formulate this problem as a Traveling Salesman Problem' that's difficult for me. I don't know where or how to start. Can anyone give a hint?
+
+2) (https://stackoverflow.com/questions/47333771/how-can-i-merge-overlapping-strings-in-python)
