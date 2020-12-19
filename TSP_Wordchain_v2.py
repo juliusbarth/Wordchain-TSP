@@ -97,11 +97,7 @@ model.optimize()
 # Retrieve solution
 status=model.status
 if status != GRB.INF_OR_UNBD and status != GRB.INFEASIBLE:
-    print('\nSolution:')
-    
-    for i in nodes:
-        print(i, vars_seq[i].x)
-    
+    print('\nSolution:')    
     curr = 'S'
     count = 0
     shortestMergedWord = ''
