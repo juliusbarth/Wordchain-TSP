@@ -34,11 +34,12 @@ print("\nDefining Data:")
 #words = ['orca', 'arc', 'car']
 words = ['area', 'code', 'dear', 'deco', 'odec', 'rear']
 #words = ['SGALWDV', 'GALWDVP', 'ALWDVPS', 'LWDVPSP', 'WDVPSPV']
+#words = ['formation', 'crow', 'agent', 'warm',  'mic','transform', 'electromagnetism', 'micro',  'ionize']
 nbWords = len(words)
 nodes =  ['S']
 nodes.extend(words)
 nbNodes = len(nodes)
-
+# Define arcs and associated cost
 arcs = []
 cost = {}
 for w1 in words:
@@ -76,7 +77,7 @@ model = gp.Model("WordChain_TSP")
 # Variables: can we go from word i to word j?
 #vars = model.addVars(arcs, obj=cost, vtype=GRB.BINARY, name='arc')
 vars_arc = model.addVars(arcs, obj=cost, vtype=GRB.BINARY, name='var_arc' )
-vars_seq = model.addVars(nodes, obj=0, vtype=GRB.INTEGER, name='var_seq')
+vars_seq = model.addVars(nodes, obj=0, vtype=GRB.CONTINUOUS, name='var_seq')
 
 # Constraints: 
 # Visit each node and leave each node
@@ -84,7 +85,9 @@ model.addConstrs(vars_arc.sum('*', i) == 1 for i in nodes)
 model.addConstrs(vars_arc.sum(i, '*') == 1 for i in nodes)
 #Miller-Tucker-Zemlin Subtour Elimination
 model.addConstrs(vars_seq[arc[0]] - vars_seq[arc[1]] + nbNodes*vars_arc[arc] <= nbNodes-1 for arc in arcs if arc[0]!='S' and arc[1]!='S' and arc[0]!=arc[1])
-
+model.addConstrs(vars_seq[i] <= nbNodes for i in nodes)
+model.addConstrs(vars_seq[i] >= 1 for i in words)
+model.addConstr(vars_seq['S'] == 0)
 
 # Optimize the model
 model.write('WordChain_TSP.lp')
@@ -95,6 +98,10 @@ model.optimize()
 status=model.status
 if status != GRB.INF_OR_UNBD and status != GRB.INFEASIBLE:
     print('\nSolution:')
+    
+    for i in nodes:
+        print(i, vars_seq[i].x)
+    
     curr = 'S'
     count = 0
     shortestMergedWord = ''
